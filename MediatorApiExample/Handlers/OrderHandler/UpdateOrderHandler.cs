@@ -19,7 +19,7 @@ namespace MediatorApiExample.Handlers.OrderHandler
             _orderService = orderService;
         }
 
-        public Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        public Task Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             var id = ObjectId.Parse(request.Id);
             var order = _orderService.Get(id);
@@ -33,7 +33,7 @@ namespace MediatorApiExample.Handlers.OrderHandler
 
             _logger.LogInformation($"Order with id {order.Id} updated");
 
-            return Task.FromResult<Unit>(default);
+            return Task.CompletedTask;
         }
     }
 }
