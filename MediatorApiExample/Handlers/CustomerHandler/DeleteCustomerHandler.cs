@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatorApiExample.Commands.CustomerCommand;
-using MediatorApiExample.Responses.CustomerResponse;
 using MediatorApiExample.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -20,7 +19,7 @@ namespace MediatorApiExample.Handlers.CustomerHandler
             _customerService = customerService;
         }
 
-        public Task<Unit> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+        public Task Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
             var customer = _customerService.Get(ObjectId.Parse(request.Id));
 
@@ -28,7 +27,7 @@ namespace MediatorApiExample.Handlers.CustomerHandler
 
             _logger.LogInformation($"Customer deleted with id {customer.Id}");
 
-            return Task.FromResult<Unit>(default);
+            return Task.CompletedTask;
         }
     }
 }

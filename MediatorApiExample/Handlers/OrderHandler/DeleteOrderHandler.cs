@@ -19,7 +19,7 @@ namespace MediatorApiExample.Handlers.OrderHandler
             _orderService = orderService;
         }
 
-        public Task<Unit> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
+        public Task Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
             var order = _orderService.Get(ObjectId.Parse(request.Id));
 
@@ -27,7 +27,7 @@ namespace MediatorApiExample.Handlers.OrderHandler
 
             _logger.LogInformation($"Order deleted with id {order.Id}");
 
-            return Task.FromResult<Unit>(default);
+            return Task.CompletedTask;
         }
     }
 }

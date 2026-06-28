@@ -19,16 +19,16 @@ namespace MediatorApiExample.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet(Name = "GetOrders")]
-        public async Task<IActionResult> Get(GetAllOrderCommand command) 
+        [HttpGet("GetOrders", Name = "GetOrders")]
+        public async Task<IActionResult> Get([FromQuery] GetAllOrderCommand command) 
         {
             var result = await _mediator.Send(command);
 
             return Ok(result.Orders);
         }
 
-        [HttpGet(Name = "GetOrder")]
-        public async Task<IActionResult> Get(GetOrderCommand command)
+        [HttpGet("GetOrder", Name = "GetOrder")]
+        public async Task<IActionResult> Get([FromQuery] GetOrderCommand command)
         {
             var result = await _mediator.Send(command);
 

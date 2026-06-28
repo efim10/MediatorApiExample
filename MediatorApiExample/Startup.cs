@@ -49,7 +49,7 @@ namespace MediatorApiExample
 
             services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +68,7 @@ namespace MediatorApiExample
             //app.UseAuthorization();
 
             app.UseOpenApi(); // serve OpenAPI/Swagger documents
-            app.UseSwaggerUi3(); // serve Swagger UI
+            app.UseSwaggerUi(); // serve Swagger UI
             app.UseReDoc(); // serve ReDoc UI
 
             app.UseEndpoints(endpoints =>

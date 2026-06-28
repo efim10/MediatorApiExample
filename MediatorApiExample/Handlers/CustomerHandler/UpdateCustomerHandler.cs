@@ -19,7 +19,7 @@ namespace MediatorApiExample.Handlers.CustomerHandler
             _customerService = customerService;
         }
 
-        public Task<Unit> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
+        public Task Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
             var id = ObjectId.Parse(request.Id);
             var customer = _customerService.Get(id);
@@ -32,7 +32,7 @@ namespace MediatorApiExample.Handlers.CustomerHandler
 
             _logger.LogInformation($"Customer with id {customer.Id} updated");
 
-            return Task.FromResult<Unit>(default);
+            return Task.CompletedTask;
         }
     }
 }
